@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Open PDF Button</title>
+    <style>
+        .custom-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .custom-button:hover {
+            background-color: #45a049;
+        }
+        .file-input {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <label for="pdfInput" class="custom-button">
+        Open PDF
+        <input type="file" id="pdfInput" accept="application/pdf" class="file-input">
+    </label>
+</body>
+<script>
+    function openPDF() {
+    const input = document.getElementById('pdfInput');
+    const file = input.files[0];
+
+    if (file && file.type === 'application/pdf') {
+        const fileReader = new FileReader();
+        fileReader.onload = function() {
+            const pdfData = fileReader.result;
+            // Do something with the PDF data, for example:
+            // window.open(pdfData, '_blank');
+        };
+        fileReader.readAsDataURL(file);
+    } else {
+        alert('Please select a PDF file.');
+    }
+}
+
+</script>
+</html>
